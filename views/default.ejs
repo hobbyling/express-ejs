@@ -1,16 +1,165 @@
 <!DOCTYPE html>  
  <html>  
- <head>  
-  <meta charset="utf-8">  
-  <title>實作EJS</title>  
- </head>  
+ 	<head>  
+		  <meta charset="utf-8">  
+		  <title>實作EJS</title> 
+		  <style>
+			a {
+			    text-decoration:none;
+			}
+			h1{
+				color:#CC33CC;
+				font-weight: bold;
+				padding-left: 15px;
+			}
+			p{
+				font-family: 'PT Sans', sans-serif;
+			}
+		  	.Div_Container{
+				width:900px;
+				margin: 0px auto;
+			}
+			.Div_Header{
+				background-color: rgb(187, 217, 238);
+				height:71px;
+				line-height:71px;
+			}
+		  	.Div_Left{
+				width:170px;
+				float:left;
+				color:white;
+				text-align: left;
+				font-family: 'PT Sans', sans-serif;
+				font-size: 14px;
+				font-weight: bold;
+				background-color: #6600FF;
+			}
+			.Div_Right{
+				width:690px;
+				padding:20px;
+
+			}
+			.Div_Footer{
+				text-align:center;
+				height:50px;
+			}
+			.Div_Left ul{
+				list-style: none;
+			    margin: 0px;
+			    padding: 0px;
+			}
+			.Div_Left ul li a {
+				list-style: none;
+			    display: block;
+			    padding: 5px;
+			    border-bottom: 1px solid #ccc;
+			    color: white;
+			}
+			
+			
+		  </style>
+	 </head>  
  <body>  
- <h1><%= title %></h1>  
- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda, quod, praesentium dolor velit culpa cupiditate odio nihil voluptates aliquid eum dolore eligendi quas nobis nam nesciunt odit pariatur minus cum.</p>  
- <ul>  
- <% for(var i=0; i<users.length; i++) {%>  
-  <li><%= users[i] %></li>  
- <% } %>  
- </ul>  
+	 <div id="Div_Container">
+	 	<div class="Div_Header">
+			<h1><%= title %></h1>
+		</div>
+		<div id="Div_Left">
+			<ul>
+				<% for(var i=0; i<menu.length; i++) {%>
+				<li><a href="#"><%= menu[i] %></a></li> 
+				<% } %>
+			</ul>
+		</div>
+
+		<div id="Div_Right">
+			<h2>
+				CSS 套用方式
+			</h2>
+				<p>
+					我們可以用以下四種方式，將 CSS 套用入 HTML 文件中：
+				</p>
+				
+					<a href="http://www.1keydata.com/css-tutorial/tw/apply.php#inline"><li> 行內套用 (Inline) </li></a>
+					<a href="http://www.1keydata.com/css-tutorial/tw/apply.php#embed"><li> 嵌入套用 (Embed)</li></a>
+					<a href="http://www.1keydata.com/css-tutorial/tw/apply.php#link"><li> 外部連接套用 (External Link)</li></a>
+					<a href="http://www.1keydata.com/css-tutorial/tw/apply.php#import"><li> 匯入套用 (Import)</li></a>
+				
+
+			<h3>
+				行內套用
+			</h3>
+				<p>
+					我們可以在 HTML 文件內直接宣告樣式。舉例來說，
+				</p>
+				<p class="pgray">
+					&lt;p style='font-family:verdana; font-size:16;'&gt;This is font size 16.&lt/p&gt;
+				</p>
+				<p>
+					以上的 HTML 文件在瀏覽器上會顯現為：
+				</p>
+				<p>
+					This is font size 16.
+				</p>
+			<h3>
+				嵌入套用
+			</h3>
+				<p>
+					樣式可以嵌入於 HTML 文件中 (通常是在 &lthead&gt 內)。舉例來說，
+				</p>
+				<p class="pgray">
+					&lthead&gt</br>
+	  				&nbsp&nbsp&ltstyle type="text/css"&gt</br>
+	    			&nbsp&nbsp&nbsp&nbspdiv { </br>
+	     			&nbsp&nbsp&nbsp&nbsp&nbsp&nbspbackground-color:#FF0000;</br>
+	    			&nbsp&nbsp&nbsp&nbsp}</br>
+	  				&nbsp&nbsp&lt/style&gt</br>
+					&lt/head&gt</br></br>
+
+					&ltbody&gt</br>
+					&nbsp&nbsp&ltdiv&gt</br>
+					&nbsp&nbsp&nbsp&nbsp背景顏色是紅色</br>
+					&nbsp&nbsp&lt/div&gt</br> 
+					&lt/body&gt</br>
+				</p>
+				<p>
+					以上的 HTML 會顯現出：
+				</p>
+				<p class="pred">
+					背景顏色是紅色
+				</p>
+			<h3>
+				外部連接套用
+			</h3>
+				<p>
+					在這種方式下，所有的 CSS 樣式宣告都是存在另外一個檔案中。該檔案通常名稱為 .css。在 HTML 文件的 &ltheader&gt .. &lt/header&gt &gt之中，我們將用以下的程式碼將這個 .css 檔案連接進入：
+				</p>
+				<p>
+					&ltlink rel=stylesheet type="text/css" href="external-stylesheet.css"&gt
+				</p>
+				<p>
+					以上這一行會將在 external-stylesheet.css 這個檔案內所宣告的樣式加入 HTML 文件內。
+				</p>
+			<h3>
+				匯入套用
+			</h3>
+				<p>
+					外部的 CSS 樣式也可以被匯入進 HTML 文件。匯入的做法為利用 @import 這個指令。@import 的語法為：
+				</p>
+				<p>
+					&ltSTYLE TYPE="text/css"&gt 
+					&lt!-- 
+					  @import url(http://www.mysite.com/style.css); 
+					--> 
+					&lt/STYLE&gt
+				</p>
+				<p>
+					@import 指令最初的用意，是為了能夠針對不同的瀏覽器而運用不同的樣式。不過，現在已經沒有這個必要。現在用 @import 的目的，最常是要加入多個 CSS 樣式。當多個 CSS 樣式被 @import 的方式加入，而不同 CSS 樣式互相有衝突時，後被加入的 CSS 樣式有優先的順位 (詳情請見 <a href="http://www.1keydata.com/css-tutorial/tw/cascade.php">CSS 串接</a>)。
+				</p>
+				<hr>
+		</div>
+		<div style="clear:both;"></div>
+		<div id="Div_Footer">Copyright © 2016 <a href="http://www.1keydata.com/">1keydata.com</a>   版權所有</div>
+	</div>
  </body>  
  </html>  
